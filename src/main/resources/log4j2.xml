@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true" name="XMLConfigTest"
+               packages="org.taxreport.binance">
+    <Properties>
+        <Property name="filename">target/error.log</Property>
+        <Property name="pattern1">%style{%d{yyyy-MM-dd HH:mm:ss} [%c{3}:%L]}{white} %highlight{%-5level%throwable} - %msg%n</Property>
+    </Properties>
+<!--    <Filter type="ThresholdFilter" level="trace"/>-->
+
+    <Appenders>
+        <Appender type="File" name="FILE" fileName="${filename}">
+            <Layout type="PatternLayout">
+                <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+            </Layout>
+        </Appender>
+        <Appender type="Console" name="CONSOLE">
+            <Layout type="PatternLayout" pattern="${pattern1}" disableAnsi="false"/>
+        </Appender>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.taxreport.binance" level="debug" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+
+        <Root level="error">
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
